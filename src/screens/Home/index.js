@@ -2,7 +2,6 @@ import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity} from 'react-
 import React, {useEffect, useState} from 'react'
 import Searchbar from '../../components/searchbar.js';
 import { getDesserts } from '../../../Constants/Desserts.js';
-import ItemPage from '../Item/index.js';
 
 
 

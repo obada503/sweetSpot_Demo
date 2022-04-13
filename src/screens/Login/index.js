@@ -24,7 +24,7 @@ const LoginPage = ({ navigation }) => {
             <TextInput placeholder='Password' secureTextEntry={true} style={styles.textinput} placeholderTextColor={COLORFONTS.white} />
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity onPress={() => navigation.navigate('BottomTabs')}>
               <View style={styles.firstButton}>
                 <Text style={styles.buttonText}>Log in</Text>
               </View>

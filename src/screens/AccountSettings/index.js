@@ -7,7 +7,7 @@ import Register from '../Register'
 const AccountSettings = ({ navigation }) => {
   return (
     <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
               <View style={styles.firstButton}>
                 <Text style={styles.buttonText}>Don't have an account? SignUp</Text>
               </View>

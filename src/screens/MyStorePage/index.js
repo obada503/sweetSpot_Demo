@@ -32,7 +32,7 @@ const MyStorePage = ({navigation}) => {
           
             
           
-          <TouchableOpacity onPress={() => navigation.navigate('SellerDetails')}>
+          <TouchableOpacity onPress={() => navigation.navigate('SellerInfo')}>
               <View style= {styles.firstButton}>
                 <Text style={styles.buttonText}>Edit Personal Info</Text>
               </View>

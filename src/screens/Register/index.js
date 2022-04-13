@@ -33,7 +33,7 @@ const Register = ({navigation}) => {
                   </View>
                 </TouchableOpacity>
                 
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => navigation.navigate('DessertPage')}>
                   <View style= {styles.firstButton}>
                     <Text style={styles.buttonText}>Register</Text>
                   </View>
