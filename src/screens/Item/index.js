@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, StyleSheet, View, Image, ScrollView, SafeAreaView, Button} from "react-native";
 import { getDessert } from '../../../Constants/Desserts';
 

@@ -24,13 +24,13 @@ const LoginPage = ({ navigation }) => {
             <TextInput placeholder='Password' secureTextEntry={true} style={styles.textinput} placeholderTextColor={COLORFONTS.white} />
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('stack')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
               <View style={styles.firstButton}>
                 <Text style={styles.buttonText}>Log in</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
               <View style={styles.firstButton}>
                 <Text style={styles.buttonText}>Don't have an account? SignUp</Text>
               </View>

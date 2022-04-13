@@ -1,50 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Register from '../screens/Register'
 import LoginPage from '../screens/Login'
 import AccountSettings from '../screens/AccountSettings'
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator, createTabNavigator } from '@react-navigation/bottom-tabs'
 import MyStorePage from '../screens/MyStorePage'
 import DessertPage from '../screens/Home'
 import ItemPage from '../screens/Item'
 import { COLORFONTS } from '../../Constants/theme'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+const AuthStack = createNativeStackNavigator();
+
+function AuthStackScreen({isSignedIn}){
+    return (
+        <AuthStack.Navigator>
+            <AuthStack.Screen name="Login" component={LoginPage}></AuthStack.Screen>
+            <AuthStack.Screen name="Register" component={Register}></AuthStack.Screen>
+        </AuthStack.Navigator>
+    )
+}
 
 
+const Itemstack = createNativeStackNavigator();
 
-
-
-
-const auth = createStackNavigator(
-    {
-        Login:
-        {
-            screen: LoginPage,
-            navigationOptions: {
-                headerShown: false,
-            }
-        },
-        SignUp:
-        {
-            screen: Register,
-            navigationOptions: {
-                headerShown: false,
-            }
-        }
-    }
-
-);
-
-
-const itemstack = createNativeStackNavigator();
-
-function HomeNav(){
+function ItemStackScreen(){
     return(
-        <NavigationContainer >
-            <itemstack.Navigator screenOptions={{
+        
+            <Itemstack.Navigator options={{
                headerTitle: 'SweetPage',
                headerStyle:
                {
@@ -56,209 +40,119 @@ function HomeNav(){
                    fontWeight: '800',
                }, 
             }}>
-                <itemstack.Screen name = 'Home' component = {DessertPage}/>
-                <itemstack.Screen name = 'Item' component = {ItemPage}/>
-            </itemstack.Navigator>
-        </NavigationContainer>
+                <Itemstack.Screen name = 'Home' component = {DessertPage} options={{headerShown:false}}/>
+                <Itemstack.Screen name = 'Item' component = {ItemPage} />
+            </Itemstack.Navigator>
+        
     );
 }
 
-const homenav = createStackNavigator(
-    {
-        //here, creating two route's for the screens to be able to navigate between them 
-        home:
-        {
-            screen: DessertPage 
-                 
-        },
-        item:
-        {
-            screen: ItemPage
-            
-        }
-    },
+// const AccountStack = createNativeStackNavigator();
 
-    {
-        defaultNavigationOptions:
-        {
-            headerTitle: 'SweetPage',
-            headerStyle:
-            {
-                backgroundColor: COLORFONTS.primary
-            },
-            headerTitleStyle:
-            {
-                color: COLORFONTS.white,
-                fontWeight: '800',
-            },
-            
-        }
-
-    }
-)
-
-
-// const itemnav = createStackNavigator(
-//     {
-//         item:
-//         {
-//             screen: ItemPage
-
-//         },
-         
-//     },
-
-//     {
-//         defaultNavigationOptions:
-//         {
-//             headerTitle: 'ItemPage',
-//             headerStyle:
-//             {
-//                 backgroundColor: COLORFONTS.primary
-//             },
-//             headerTitleStyle:
-//             {
-//                 color: COLORFONTS.white,
-//                 fontWeight: '800',
-//             }
-//         }
-
+// function AccountStackScreen(){
+//     return (
+//         <AccountStack.Navigator>
+//             <AccountStack.Screen name="Login" component={AccountSettings}></AccountStack.Screen>
+//         </AccountStack.Navigator>
+//     );
 //     }
-// ) 
+ const MyStoreStack = createNativeStackNavigator();
 
-const accountnav = createStackNavigator(
-    {
-        account:
-        {
-            screen: AccountSettings
-
-        },   
-    },
-
-    {
-        defaultNavigationOptions:
-        {
-            headerTitle: 'SweetSettings',
-            headerStyle:
-            {
-                backgroundColor: COLORFONTS.primary
-            },
-            headerTitleStyle:
-            {
-                color: COLORFONTS.white,
-                fontWeight: '800',
-            }
-        }
+function MyStoreStackScreen(){
+    return (
+        <MyStoreStack.Navigator>
+            <MyStoreStack.Screen name="MyStore" component={MyStorePage} options={{headerShown:false}}></MyStoreStack.Screen>
+        </MyStoreStack.Navigator>
+    );
     }
-)
-
-const mystorepagenav = createStackNavigator(
-    {
-        MyStorePage:
-        {
-            screen: MyStorePage
-
-        },   
-    },
-
-    {
-        defaultNavigationOptions:
-        {
-            headerTitle: 'SweetStore',
-            headerStyle:
-            {
-                backgroundColor: COLORFONTS.primary
-            },
-            headerTitleStyle:
-            {
-                color: COLORFONTS.white,
-                fontWeight: '800',
-            }
-        }
-    }
-)
 
 
+const Tab = createBottomTabNavigator()
 
-
-const tabNavigator = createBottomTabNavigator({
-
-
-    store:
-    {
-        screen: mystorepagenav,
-        navigationOptions:
-        {
+function BottomTabs() {
+    return (
+        <Tab.Navigator>
+        <Tab.Screen name="MyStore" component={MyStoreStackScreen} options=
+        {{
             tabBarLabel: 'MyStore',
             tabBarIcon:({tintColor,focused}) => <Icon name='view-dashboard-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
-        }
-    },
-    home:
-    {
-        screen: HomeNav,
-        navigationOptions:
-        {
+        }} />
+        <Tab.Screen name="Home" component={ItemStackScreen} options=
+        {{
             tabBarLabel: 'Home',
-            tabBarIcon:({tintColor,focused}) => <Icon name='home-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
-        },
-        //screen: itemnav
+            tabBarIcon:({tintColor,focused}) => <Icon name='home-outline' size={focused ? 30: 20} color={COLORFONTS.primary}
+            initialRouteName="Home"
+            options= 
+            {{
+                activeTintColor: COLORFONTS.primary,
+                inactiveTintColor: COLORFONTS.grey,
 
-    },
-    account:
-    {
-        screen: accountnav,
-        navigationOptions:
-        {
+                labelStyle:
+            {
+                    fontWeight: 'bold',
+
+            },
+            tabStyle:
+            {
+                paddingTop: 5,
+                height: 50
+            },
+                headerTitle: 'SweetPage',
+                headerStyle:
+                {
+                    backgroundColor: COLORFONTS.primary
+                },
+                headerTitleStyle:
+                {
+                    color: COLORFONTS.white,
+                    fontWeight: '800',
+                }, 
+            
+            }}/>
+        }} />
+        <Tab.Screen name="Account" component={AccountSettings} options=
+        {{
             tabBarLabel: 'Account',
             tabBarIcon:({tintColor,focused}) => <Icon name='account-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
-        },
-       
-    },
+        }} />
+        </Tab.Navigator>
+    );
+}
+            
+const Stack = createNativeStackNavigator();
 
+export default function Router(){
 
-    
+    const [isSignedIn, setIsSignedIn] = useState(false);
 
-},{
-    initialRouteName: 'home',
-    
-    tabBarOptions: 
-    {
-        activeTintColor: COLORFONTS.primary,
-        inactiveTintColor: COLORFONTS.grey,
+    // return (
+    //     <>
+    //         {( isSignedIn ? (
+    //             <BottomTabs/>
+    //         ) : (
+    //             <AuthStackScreen/>
+    //         ))}
+    //     </>
+    // );
 
-        labelStyle:
-        {
-            fontWeight: 'bold',
-
-        },
-        tabStyle:
-        {
-            paddingTop: 5,
-            height: 50
-        }
-    }
-
-}) 
-
-const stack = createSwitchNavigator(
-    {
-        authStack:
-        {
-            screen: auth,
-            navigationOptions:
-            {
-                headerShown: false,
-            }
-        },
-        stack:
-        {
-            screen: tabNavigator,
-        },
-
-    }
-);
-
-const Router = createAppContainer(stack);
-
-
-export default Router
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                {/* { isSignedIn  ? ( */}
+                    <Stack.Screen
+                        name="Home"
+                        component={BottomTabs}
+                    />  
+                {/* ) : ( */}
+                    <Stack.Screen
+                        name="Authentication"
+                        component={AuthStackScreen}
+                        options={{
+                        headerShown: false,
+                        }}
+                    />
+                {/* )} */}
+            </Stack.Navigator>
+        </NavigationContainer>             
+    );
+};
