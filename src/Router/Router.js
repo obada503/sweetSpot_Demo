@@ -28,61 +28,8 @@ const Itemstack = createNativeStackNavigator();
 function ItemStackScreen(){
     return(
         
-            <Itemstack.Navigator options={{
-               headerTitle: 'SweetPage',
-               headerStyle:
-               {
-                   backgroundColor: COLORFONTS.primary
-               },
-               headerTitleStyle:
-               {
-                   color: COLORFONTS.white,
-                   fontWeight: '800',
-               }, 
-            }}>
-                <Itemstack.Screen name = 'Home' component = {DessertPage} options={{headerShown:false}}/>
-                <Itemstack.Screen name = 'Item' component = {ItemPage} />
-            </Itemstack.Navigator>
-        
-    );
-}
-
-// const AccountStack = createNativeStackNavigator();
-
-// function AccountStackScreen(){
-//     return (
-//         <AccountStack.Navigator>
-//             <AccountStack.Screen name="Login" component={AccountSettings}></AccountStack.Screen>
-//         </AccountStack.Navigator>
-//     );
-//     }
- const MyStoreStack = createNativeStackNavigator();
-
-function MyStoreStackScreen(){
-    return (
-        <MyStoreStack.Navigator>
-            <MyStoreStack.Screen name="MyStore" component={MyStorePage} options={{headerShown:false}}></MyStoreStack.Screen>
-        </MyStoreStack.Navigator>
-    );
-    }
-
-
-const Tab = createBottomTabNavigator()
-
-function BottomTabs() {
-    return (
-        <Tab.Navigator>
-        <Tab.Screen name="MyStore" component={MyStoreStackScreen} options=
-        {{
-            tabBarLabel: 'MyStore',
-            tabBarIcon:({tintColor,focused}) => <Icon name='view-dashboard-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
-        }} />
-        <Tab.Screen name="Home" component={ItemStackScreen} options=
-        {{
-            tabBarLabel: 'Home',
-            tabBarIcon:({tintColor,focused}) => <Icon name='home-outline' size={focused ? 30: 20} color={COLORFONTS.primary}
-            initialRouteName="Home"
-            options= 
+            <Itemstack.Navigator  >
+                <Itemstack.Screen name = 'Home' component = {DessertPage} options= 
             {{
                 activeTintColor: COLORFONTS.primary,
                 inactiveTintColor: COLORFONTS.grey,
@@ -109,9 +56,133 @@ function BottomTabs() {
                 }, 
             
             }}/>
-        }} />
-        <Tab.Screen name="Account" component={AccountSettings} options=
+                <Itemstack.Screen name = 'Item' component = {ItemPage} options= 
+            {{
+                activeTintColor: COLORFONTS.primary,
+                inactiveTintColor: COLORFONTS.grey,
+
+                labelStyle:
+            {
+                    fontWeight: 'bold',
+
+            },
+            tabStyle:
+            {
+                paddingTop: 5,
+                height: 50
+            },
+                headerTitle: 'SweetItem',
+                headerStyle:
+                {
+                    backgroundColor: COLORFONTS.primary
+                },
+                headerTitleStyle:
+                {
+                    color: COLORFONTS.white,
+                    fontWeight: '800',
+                }, 
+            
+            }}/>
+            </Itemstack.Navigator>
+        
+    );
+}
+
+const AccountStack = createNativeStackNavigator();
+
+function AccountStackScreen(){
+    return (
+        <AccountStack.Navigator>
+            <AccountStack.Screen name="Login" component={AccountSettings} options= 
+            {{
+                activeTintColor: COLORFONTS.primary,
+                inactiveTintColor: COLORFONTS.grey,
+
+                labelStyle:
+            {
+                    fontWeight: 'bold',
+
+            },
+            tabStyle:
+            {
+                paddingTop: 5,
+                height: 50
+            },
+                headerTitle: 'SweetSettings',
+                headerStyle:
+                {
+                    backgroundColor: COLORFONTS.primary
+                },
+                headerTitleStyle:
+                {
+                    color: COLORFONTS.white,
+                    fontWeight: '800',
+                }, 
+            
+            }}></AccountStack.Screen>
+        </AccountStack.Navigator>
+    );
+    }
+ const MyStoreStack = createNativeStackNavigator();
+
+function MyStoreStackScreen(){
+    return (
+        <MyStoreStack.Navigator>
+            <MyStoreStack.Screen name="MyStore" component={MyStorePage} options= 
+            {{
+                activeTintColor: COLORFONTS.primary,
+                inactiveTintColor: COLORFONTS.grey,
+
+                labelStyle:
+            {
+                    fontWeight: 'bold',
+
+            },
+            tabStyle:
+            {
+                paddingTop: 5,
+                height: 50
+            },
+                headerTitle: 'SweetItem',
+                headerStyle:
+                {
+                    backgroundColor: COLORFONTS.primary
+                },
+                headerTitleStyle:
+                {
+                    color: COLORFONTS.white,
+                    fontWeight: '800',
+                }, 
+            
+            }}></MyStoreStack.Screen>
+        </MyStoreStack.Navigator>
+    );
+    }
+
+
+const Tab = createBottomTabNavigator()
+
+function BottomTabs() {
+    return (
+        <Tab.Navigator>
+        <Tab.Screen name="MyStore" component={MyStoreStackScreen} options=
         {{
+            headerShown:false,
+            tabBarLabel: 'MyStore',
+            tabBarIcon:({tintColor,focused}) => <Icon name='view-dashboard-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
+        }} />
+        <Tab.Screen name="Home" component={ItemStackScreen} options=
+        {{
+            headerShown:false,
+            tabBarLabel: 'Home',
+            tabBarIcon:({tintColor,focused}) => <Icon name='home-outline' size={focused ? 30: 20} color={COLORFONTS.primary}
+            initialRouteName="Home"
+            
+            />
+        }} />
+        <Tab.Screen name="Account" component={AccountStackScreen} options=
+        {{
+            headerShown:false,
             tabBarLabel: 'Account',
             tabBarIcon:({tintColor,focused}) => <Icon name='account-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
         }} />
@@ -142,13 +213,16 @@ export default function Router(){
                     <Stack.Screen
                         name="Home"
                         component={BottomTabs}
+                        options={{
+                            headerShown: false,
+                            }}
                     />  
                 {/* ) : ( */}
                     <Stack.Screen
                         name="Authentication"
                         component={AuthStackScreen}
                         options={{
-                        headerShown: false,
+                            headerShown: false,
                         }}
                     />
                 {/* )} */}
