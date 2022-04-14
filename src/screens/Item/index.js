@@ -21,6 +21,7 @@ return (
               <Image style={styles.image} source={dessert.image} />
           </View>
           <View style={styles.infoContainer}>
+              <Text style={styles.sellerName}>{dessert.sellerName}</Text>
               <Text style={styles.name}>{dessert.name}</Text>
               <Text style={styles.price}>$ {dessert.price}</Text>
               <Text style={styles.description}>{dessert.description}</Text>

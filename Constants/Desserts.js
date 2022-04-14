@@ -60,7 +60,7 @@ const DESSERTS = [{
     name: "Chocolate Fudge IceCream with Sprinkles",
     price: 3.5,
     image: require('../assets/Desserts/Image8.png'),
-    description: "AAAAAAAATwo scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
+    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
 },
 {
     id: 9,
@@ -81,7 +81,7 @@ const DESSERTS = [{
 {
     id: 11,
     sellerName: "Jeremy Dickenson",
-    name: "Chocolate Custard",
+    name: "Oreo Toast",
     price: 3.5,
     image: require('../assets/Desserts/Image11.png'),
     description: "Light chocolate custard, with rasberries on the side!"

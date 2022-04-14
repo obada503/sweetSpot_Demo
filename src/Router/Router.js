@@ -10,7 +10,8 @@ import ItemPage from '../screens/Item'
 import { COLORFONTS } from '../../Constants/theme'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import SellerDetails from '../screens/SellerDetails'
+import SellerDetails from '../screens/SellerInventory'
+import SellerInventory from '../screens/SellerInventory'
 
 const AuthStack = createNativeStackNavigator();
 
@@ -93,7 +94,7 @@ const AccountStack = createNativeStackNavigator();
 
 function AccountStackScreen(){
     return (
-        <AccountStack.Navigator>
+        <AccountStack.Navigator >
             <AccountStack.Screen name="Account" component={AccountSettings} options= 
             {{
                 activeTintColor: COLORFONTS.primary,
@@ -156,7 +157,7 @@ function MyStoreStackScreen(){
                 }, 
             
             }}></MyStoreStack.Screen>
-            <MyStoreStack.Screen name = 'SellerInfo' component = {SellerDetails} options= 
+            <MyStoreStack.Screen name = 'SellerInventory' component = {SellerInventory} options= 
             {{
                 activeTintColor: COLORFONTS.primary,
                 inactiveTintColor: COLORFONTS.grey,
@@ -171,7 +172,7 @@ function MyStoreStackScreen(){
                 paddingTop: 5,
                 height: 50
             },
-                headerTitle: 'Personal Item',
+                headerTitle: 'My Items',
                 headerStyle:
                 {
                     backgroundColor: COLORFONTS.primary

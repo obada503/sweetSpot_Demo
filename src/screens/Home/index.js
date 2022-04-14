@@ -7,6 +7,7 @@ import { getDesserts } from '../../../Constants/Desserts.js';
 
 const DessertPage = ({navigation}) => {
 
+  //this function is used to display our desserts
   function DisplayDessert({ item: dessert }){
     // console.log(dessert);
     // console.log(dessert.id);
@@ -25,7 +26,7 @@ const DessertPage = ({navigation}) => {
     )
 }
 
-   //this function is used to display our desserts
+   
   //  function renderDessert({item: dessert}){
   //   return(
 

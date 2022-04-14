@@ -23,18 +23,16 @@ const MyStorePage = ({navigation}) => {
           </View>
 
           <View style={{alignItems:'center'}}>
-            <Image source={require('../../../assets/chocolateframe.png')}
+            <Image source={require('../../../assets/user.png')}
                     style={{width:130 ,height:130, borderRadius: 100, marginTop:-60}}></Image>
               <Text style={{fontSize:25,fontWeight:'bold', fontFamily:'monospace', padding:10}}> Adam Richard </Text>
               <Text style={{color:'darkgrey',fontSize:15,fontWeight:'bold', fontFamily:'monospace'}}> 22, Male </Text>
               <MaterialIcons name="add-circle" size= {45} color="black" style={styles.add}/>
           </View>
-          
-            
-          
-          <TouchableOpacity onPress={() => navigation.navigate('SellerInfo')}>
+                   
+          <TouchableOpacity onPress={() => navigation.navigate('SellerInventory')}>
               <View style= {styles.firstButton}>
-                <Text style={styles.buttonText}>Edit Personal Info</Text>
+                <Text style={styles.buttonText}>View Current Inventory</Text>
               </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
@@ -82,4 +80,4 @@ const MyStorePage = ({navigation}) => {
 }
 
 export default MyStorePage
-
+ 
