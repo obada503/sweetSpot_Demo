@@ -89,8 +89,39 @@ const styles = StyleSheet.create(
             width:undefined,
             height:undefined
 
-        }
-        
+        },
+        SellerInventory: 
+        {
+            backgroundColor: "#eeeeee",
+        },
+        SellerInventoryContainer: 
+        {
+            backgroundColor: "#eeeeee",
+            paddingVertical: 8,
+            paddingBottom: 85,
+            marginHorizontal: 8,
+        },
+        card: 
+        {
+            backgroundColor: 'white',
+            borderRadius: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '4%',
+          
+        },
+        image: 
+        {
+            flex:1,
+            aspectRatio: 1,
+            width: '100%',
+            height:'100%',
+            resizeMode:'contain'
+        },
+        infoContainer: 
+        {
+            padding: 50
+        },
      
     }
 );

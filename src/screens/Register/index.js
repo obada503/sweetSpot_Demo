@@ -22,6 +22,8 @@ const Register = ({navigation}) => {
               </View>
               <View style={styles.dataContainer}>
                 <TextInput placeholder='Username' style = {styles.textinput} placeholderTextColor={COLORFONTS.white}/>
+                <TextInput placeholder='Sex' style = {styles.textinput} placeholderTextColor={COLORFONTS.white}/>
+                <TextInput placeholder='Age' style = {styles.textinput} placeholderTextColor={COLORFONTS.white}/>
                 <TextInput placeholder='Email' style = {styles.textinput} placeholderTextColor={COLORFONTS.white}/>
                 
                 <TextInput placeholder='Password' secureTextEntry={true} style = {styles.textinput} placeholderTextColor={COLORFONTS.white}/>

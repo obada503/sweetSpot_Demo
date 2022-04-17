@@ -157,7 +157,7 @@ function MyStoreStackScreen(){
                 }, 
             
             }}></MyStoreStack.Screen>
-            <MyStoreStack.Screen name = 'SellerInventory' component = {SellerInventory} options= 
+            <MyStoreStack.Screen name = 'Item' component = {ItemPage} options= 
             {{
                 activeTintColor: COLORFONTS.primary,
                 inactiveTintColor: COLORFONTS.grey,
@@ -172,7 +172,7 @@ function MyStoreStackScreen(){
                 paddingTop: 5,
                 height: 50
             },
-                headerTitle: 'My Items',
+                headerTitle: 'SweetItem',
                 headerStyle:
                 {
                     backgroundColor: COLORFONTS.primary
@@ -224,7 +224,7 @@ const Stack = createNativeStackNavigator();
 
 export default function Router(){
 
-    const [isSignedIn, setIsSignedIn] = useState(false);
+    // const [isSignedIn, setIsSignedIn] = useState(false);
 
     // return (
     //     <>

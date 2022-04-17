@@ -216,5 +216,29 @@ export function getDesserts(){
 
 //function to display the specific image the user clicks on
 export function getDessert(id){
-    return DESSERTS.find((dessert) => dessert.id == id);
+        return DESSERTS.find((dessert) => dessert.id == id);
+}
+
+// export function getSellerDesserts(sellerName){
+    
+//         return DESSERTS.find((sellerName) => sellerName.id == id);
+    
+export function getSellerDessert(id, sellerName){
+
+    // console.log(DESSERTS.find((dessert) => (dessert.id == id && dessert.sellerName == sellerName)));
+    return DESSERTS.find((dessert) => dessert.id == id && dessert.sellerName == sellerName);
+   
+}
+
+
+export function getSellerName(sellerName)
+{
+     
+    DESSERTS.filter(value => value == sellerName && DESSERTS.sellerName == sellerName)
+
+    if(sellerName == DESSERTS.sellerName)
+    {
+        return DESSERTS.sellerName;
+    }
+
 }

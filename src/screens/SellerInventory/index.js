@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect }  from 'react'
 import { getSellerItems } from '../../../Constants/SellersItems'
 
@@ -11,12 +11,14 @@ const SellerInventory = ({navigation}) => {
     return(
         
           <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Item', {selleritemsId: selleritems.id,},)}>
-            <Image style={styles.image} source={selleritems.image}/>
+           
+           <Image style={styles.image} source={selleritems.image}/>
             
               <View style={styles.infoContainer}>
-                <Text style={styles.name}>{selleritems.name}</Text>
-                <Text style={styles.price}>$ {selleritems.price}</Text>
+              
+            
               </View>
+            
           </TouchableOpacity>    
     )
 }
@@ -28,17 +30,17 @@ const [selleritems, setSelleritems] = useState([]);
   })
 
   return (
-    <View style={{flexDirection:'row', alignItems:'center'}}>
-        {/* Displaying searchbar component */}
+    <View>
         
         <FlatList 
+          horizontal={true}
           style={styles.SellerInventory}
           contentContainerStyle={styles.SellerInventoryContainer}
           keyExtractor={(item) => item.id.toString()}
           data={selleritems}
           //renderDessert function declared above
           renderItem={DisplaySellerItems}
-      />
+        />
     </View>
   )
 }
@@ -47,7 +49,7 @@ export default SellerInventory
 
 const styles = StyleSheet.create({
   SellerInventory: {
-    backgroundColor: "#eeeeee",
+  backgroundColor: "#eeeeee",
   },
   SellerInventoryContainer: {
   backgroundColor: "#eeeeee",
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
   resizeMode:'contain'
   },
   infoContainer: {
-  padding: 16
+  padding: 50
   },
   name: {
   fontSize: 22,

@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Text, StyleSheet, View, Image, ScrollView, SafeAreaView, Button} from "react-native";
+import {Text, View, Image, ScrollView, SafeAreaView, Button} from "react-native";
 import { getDessert } from '../../../Constants/Desserts';
 
 
+import styles from './styles';
 
 const ItemPage = ({route, navigation}) => {
   
@@ -12,8 +13,8 @@ const ItemPage = ({route, navigation}) => {
   useEffect(() => {
       setDesserts(getDessert(dessertId))
   })
-  console.log(dessertId);
-  console.log(dessert);
+  // console.log(dessertId);
+  // console.log(dessert);
 return (
   <SafeAreaView>
       <ScrollView>
@@ -34,45 +35,5 @@ return (
 export default ItemPage
 
 
-const styles = StyleSheet.create({
-    imageContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-      backgroundColor: 'white'
-    },
-    infoContainer: {
-      padding: 16
-    },
-    name: {
-      fontSize: 22,
-      fontWeight: 'bold',
-    },
-    price: {
-      fontSize: 16,
-      fontWeight: '600',
-      marginBottom: 8,
-    },
-    description: {
-      fontSize: 16,
-      fontWeight: '400',
-      color: '#787878',
-      marginBottom: 16,
-    },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '4%',
-  
-  },
-  image: {
-    flex:1,
-    aspectRatio: 1,
-    width: '100%',
-    height:'100%',
-    resizeMode:'contain'
-  },
-  });
 
 
