@@ -8,25 +8,24 @@ import styles from './styles';
 const ItemPage = ({route, navigation}) => {
   
   const {dessertId} = route.params;
-  const [dessert, setDesserts] = useState({});
+  console.log("dessertId",dessertId);
 
+  const [dessert, setDesserts] = useState({});
   useEffect(() => {
       setDesserts(getDessert(dessertId))
   })
-  // console.log(dessertId);
-  // console.log(dessert);
 return (
   <SafeAreaView>
       <ScrollView>
           <View style={styles.imageContainer}>
               <Image style={styles.image} source={dessert.image} />
           </View>
-          <View style={styles.infoContainer}>
+           <View style={styles.infoContainer}>
               <Text style={styles.sellerName}>{dessert.sellerName}</Text>
               <Text style={styles.name}>{dessert.name}</Text>
               <Text style={styles.price}>$ {dessert.price}</Text>
               <Text style={styles.description}>{dessert.description}</Text>
-          </View>
+          </View> 
       </ScrollView>
   </SafeAreaView>
 )

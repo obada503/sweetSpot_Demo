@@ -7,13 +7,15 @@ export function DisplayDessert(navigation,{name, price, image}){
     return(
 
           <TouchableOpacity style={styles.card} onPress={() => {
-                  navigation.navigate('item', {dessertId: dessert.id})
+
+            console.log("Itemss",dessert.id);
+               //   navigation.navigate('Item', {dessertId: dessert.id})
               }}>
             <Image style={styles.image} source={image}/>
             
             <View style={styles.infoContainer}>
                 <Text style={styles.name}>{name}</Text>
-                <Text style={styles.price}>$ {price}</Text>
+                <Text style={styles.price}>${price}</Text>
             </View>
           </TouchableOpacity>
 

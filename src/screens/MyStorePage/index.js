@@ -18,7 +18,16 @@ const MyStorePage = ({navigation}) => {
     // console.log(dessert.id);
     return(
         
-          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Item', {selleritemID: selleritem.id,},)}>
+          <TouchableOpacity style={styles.card} onPress={() => {
+                      
+                    // navigation.navigate('Item', {selleritemID: selleritem.id,},
+                     
+                     navigation.navigate('Item', {dessertId: selleritem.id},
+
+                 
+                     )}
+          }
+          >
            
            <Image style={styles.image} source={selleritem.image}/>
             
