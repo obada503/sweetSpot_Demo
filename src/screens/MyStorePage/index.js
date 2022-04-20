@@ -18,7 +18,13 @@ const MyStorePage = ({navigation}) => {
     // console.log(dessert.id);
     return(
         
-          <TouchableOpacity style={styles.card} onPress={() => {
+          <TouchableOpacity style={  {
+            backgroundColor: 'white',
+            borderRadius: 13,
+            alignItems: 'center',
+            justifyContent: 'center',
+          
+        }} onPress={() => {
                       
                     // navigation.navigate('Item', {selleritemID: selleritem.id,},
                      
@@ -29,7 +35,7 @@ const MyStorePage = ({navigation}) => {
           }
           >
            
-           <Image style={styles.image} source={selleritem.image}/>
+           <Image style={{height:130,width:130,marginVertical:20,marginHorizontal:20,marginBottom:100}} source={selleritem.image}/>
             
               <View style={styles.infoContainer}>
               
@@ -40,6 +46,17 @@ const MyStorePage = ({navigation}) => {
     )
 }
 
+const FlatListItemSeparator = () => {
+  return (
+    <View
+      style={{
+        height: 100,
+        marginHorizontal:10,
+        backgroundColor: "#000",
+      }}
+    />
+  );
+}
 
 const [selleritem, setSelleritem] = useState([]);
 
@@ -93,10 +110,12 @@ useEffect(() => {
         
           <FlatList 
           horizontal={true}
-          style={styles.SellerInventory}
+          style={{marginHorizontal:10}}
           contentContainerStyle={styles.SellerInventoryContainer}
           keyExtractor={(item) => item.id.toString()}
           data={selleritem}
+          ItemSeparatorComponent = {FlatListItemSeparator }
+
           //renderDessert function declared above
           renderItem={DisplaySellerItems}
         />

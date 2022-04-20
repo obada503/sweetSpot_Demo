@@ -85,7 +85,7 @@ const styles = StyleSheet.create(
         },
         image:
         {
-            flex:1,
+            marginHorizontal:10,
             width:undefined,
             height:undefined
 
@@ -105,6 +105,7 @@ const styles = StyleSheet.create(
         {
             backgroundColor: 'white',
             borderRadius: 16,
+            marginBottom:100,
             alignItems: 'center',
             justifyContent: 'center',
             marginTop: '4%',
