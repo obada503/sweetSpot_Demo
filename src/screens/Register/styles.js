@@ -9,7 +9,7 @@ const styles = StyleSheet.create(
         },
         topContainer:
         {
-            marginTop: 300,
+            marginTop: 200,
             alignItems: 'center'
 
         },
@@ -17,17 +17,18 @@ const styles = StyleSheet.create(
         {
             color: COLORFONTS.white,
             fontSize: SIZEFONTS.h1 *1.5,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            fontFamily:'serif',
         },
         subTitle:
         {
             color: COLORFONTS.white,
             fontSize: SIZEFONTS.h4,
-            paddingTop: 6
+            paddingTop: 6,
         },
         dataContainer:
         {
-            marginTop: 80,
+            marginTop: 20,
         },
         textinput:
         {
@@ -38,6 +39,7 @@ const styles = StyleSheet.create(
             paddingVertical: 15,
             marginHorizontal: 15,
             marginVertical: 5,
+            fontWeight: 'bold',
 
         },
         buttonContainer:

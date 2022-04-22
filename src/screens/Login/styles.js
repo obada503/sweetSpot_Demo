@@ -9,26 +9,29 @@ const styles = StyleSheet.create(
         },
         topContainer:
         {
-            marginTop: 300,
+            marginTop: 170,
             alignItems: 'center'
 
         },
         title:
         {
             color: COLORFONTS.white,
-            fontSize: SIZEFONTS.h1 *1.5,
-            fontWeight: 'bold'
+            fontSize: SIZEFONTS.h1 *2.2,
+            fontWeight: 'bold',
+            fontFamily:'serif'
+            
         },
         subTitle:
         {
             color: COLORFONTS.white,
-            fontSize: SIZEFONTS.h4,
+            fontSize: SIZEFONTS.h4 *1.5,
             paddingTop: 6,
+            fontFamily:'sans-serif'
             
         },
         dataContainer:
         {
-            marginTop: 80,
+            marginTop: 9,
         },
         textinput:
         {
@@ -44,7 +47,7 @@ const styles = StyleSheet.create(
         },
         buttonContainer:
         {
-            marginTop: 50
+            marginTop: 20
         },
         firstButton:
         {
@@ -62,6 +65,20 @@ const styles = StyleSheet.create(
             fontWeight: 'bold',
             fontSize: SIZEFONTS.h4,
         },
+
+        forgotButton: {
+            marginVertical: 10,
+            alignItems:'center',
+            backgroundColor: COLORFONTS.secondary,
+            marginHorizontal:120,
+            borderRadius: 8,
+          },
+        navButtonText: {
+            fontSize: SIZEFONTS.h4,
+            fontWeight: 'bold',
+            fontFamily: 'sans-serif',
+            color: COLORFONTS.white,
+          },
     }
 );
 

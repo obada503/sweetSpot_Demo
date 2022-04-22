@@ -3,7 +3,7 @@ import React, { useState, useEffect }  from 'react'
 import { getSellerItems } from '../../../Constants/SellersItems'
 
 
-const SellerInventory = ({navigation}) => {
+const SellerPage = ({navigation}) => {
 
   function DisplaySellerItems({ item: selleritems }){
     // console.log(dessert);
@@ -45,7 +45,7 @@ const [selleritems, setSelleritems] = useState([]);
   )
 }
 
-export default SellerInventory
+export default SellerPage
 
 const styles = StyleSheet.create({
   SellerInventory: {

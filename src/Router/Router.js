@@ -10,16 +10,18 @@ import ItemPage from '../screens/Item'
 import { COLORFONTS } from '../../Constants/theme'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import SellerDetails from '../screens/SellerInventory'
-import SellerInventory from '../screens/SellerInventory'
+// import SellerDetails from '../screens/SellerInventory'
+// import SellerPage from '../screens/SellerPage'
 
 const AuthStack = createNativeStackNavigator();
 
 function AuthStackScreen({isSignedIn}){
     return (
         <AuthStack.Navigator>
-            <AuthStack.Screen name="Login" component={LoginPage}></AuthStack.Screen>
-            <AuthStack.Screen name="Register" component={Register}></AuthStack.Screen>
+            <AuthStack.Screen name="Login" component={LoginPage} 
+                            options={{headerShown: false,}}></AuthStack.Screen>
+            <AuthStack.Screen name="Register" component={Register} 
+                            options={{headerShown: false,}}></AuthStack.Screen>
         </AuthStack.Navigator>
     )
 }
