@@ -32,7 +32,7 @@ const LoginPage = ({ navigation }) => {
           <View style={styles.dataContainer}>
             {/* <AntDesign name='user' size={25} color='#666' /> */}
             <TextInput 
-              placeholder='Username' 
+              placeholder='Email' 
               style={styles.textinput} 
               placeholderTextColor={COLORFONTS.white}
               keyboardType="email-address"

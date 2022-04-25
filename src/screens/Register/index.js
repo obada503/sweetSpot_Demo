@@ -24,7 +24,7 @@ const Register = ({navigation}) => {
               
               <View style={styles.dataContainer}>
                 <TextInput 
-                  placeholder='Username' 
+                  placeholder='Email' 
                   style = {styles.textinput} 
                   placeholderTextColor={COLORFONTS.white}
                   keyboardType="email-address" 

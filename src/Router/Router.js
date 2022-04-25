@@ -10,6 +10,8 @@ import ItemPage from '../screens/Item'
 import { COLORFONTS } from '../../Constants/theme'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+import EditAccountSettings from '../screens/EditAccountSettings'
 // import SellerDetails from '../screens/SellerInventory'
 // import SellerPage from '../screens/SellerPage'
 
@@ -124,6 +126,34 @@ function AccountStackScreen(){
                 }, 
             
             }}></AccountStack.Screen>
+            
+            <AccountStack.Screen name = 'AccountEdit' component={EditAccountSettings} options= 
+            {{
+                activeTintColor: COLORFONTS.primary,
+                inactiveTintColor: COLORFONTS.grey,
+
+                labelStyle:
+            {
+                    fontWeight: 'bold',
+
+            },
+            tabStyle:
+            {
+                paddingTop: 5,
+                height: 50
+            },
+                headerTitle: 'Edit SweetSettings',
+                headerStyle:
+                {
+                    backgroundColor: COLORFONTS.primary
+                },
+                headerTitleStyle:
+                {
+                    color: COLORFONTS.white,
+                    fontWeight: '800',
+                }, 
+            
+            }}></AccountStack.Screen>
         </AccountStack.Navigator>
     );
     }
@@ -132,7 +162,7 @@ function AccountStackScreen(){
 function MyStoreStackScreen(){
     return (
         <MyStoreStack.Navigator>
-            <MyStoreStack.Screen name="MyStore" component={MyStorePage} options= 
+            <MyStoreStack.Screen name = 'MyStore' component={MyStorePage} options= 
             {{
                 activeTintColor: COLORFONTS.primary,
                 inactiveTintColor: COLORFONTS.grey,
