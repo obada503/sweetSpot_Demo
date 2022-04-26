@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import EditAccountSettings from '../screens/EditAccountSettings'
+import EditAccount from '../screens/EditAccountSettings'
 // import SellerDetails from '../screens/SellerInventory'
 // import SellerPage from '../screens/SellerPage'
 
@@ -99,7 +100,7 @@ const AccountStack = createNativeStackNavigator();
 function AccountStackScreen(){
     return (
         <AccountStack.Navigator >
-            <AccountStack.Screen name="Account" component={AccountSettings} options= 
+            <AccountStack.Screen name='Account' component={AccountSettings} options= 
             {{
                 activeTintColor: COLORFONTS.primary,
                 inactiveTintColor: COLORFONTS.grey,
@@ -127,7 +128,7 @@ function AccountStackScreen(){
             
             }}></AccountStack.Screen>
             
-            <AccountStack.Screen name = 'AccountEdit' component={EditAccountSettings} options= 
+            <AccountStack.Screen name = 'EditAccountSettings' component={EditAccount} options= 
             {{
                 activeTintColor: COLORFONTS.primary,
                 inactiveTintColor: COLORFONTS.grey,
@@ -153,7 +154,7 @@ function AccountStackScreen(){
                     fontWeight: '800',
                 }, 
             
-            }}></AccountStack.Screen>
+            }}/>
         </AccountStack.Navigator>
     );
     }
@@ -227,27 +228,26 @@ const Tab = createBottomTabNavigator()
 function BottomTabs() {
     return (
         <Tab.Navigator>
-        <Tab.Screen name="MyStoreStack" component={MyStoreStackScreen} options=
-        {{
-            headerShown:false,
-            tabBarLabel: 'MyStore',
-            tabBarIcon:({tintColor,focused}) => <Icon name='view-dashboard-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
-        }} />
-        <Tab.Screen name="ItemStack" component={ItemStackScreen} options=
-        {{
-            headerShown:false,
-            tabBarLabel: 'Home',
-            tabBarIcon:({tintColor,focused}) => <Icon name='home-outline' size={focused ? 30: 20} color={COLORFONTS.primary}
-            initialRouteName={DessertPage}
-            
-            />
-        }} />
-        <Tab.Screen name="AccountStack" component={AccountStackScreen} options=
-        {{
-            headerShown:false,
-            tabBarLabel: 'Account',
-            tabBarIcon:({tintColor,focused}) => <Icon name='account-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
-        }} />
+            <Tab.Screen name="MyStoreStack" component={MyStoreStackScreen} options=
+            {{
+                headerShown:false,
+                tabBarLabel: 'MyStore',
+                tabBarIcon:({tintColor,focused}) => <Icon name='view-dashboard-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
+            }} />
+            <Tab.Screen name="ItemStack" component={ItemStackScreen} options=
+            {{
+                headerShown:false,
+                initialRouteName:{DessertPage},
+                tabBarLabel: 'Home',
+                tabBarIcon:({tintColor,focused}) => <Icon name='home-outline' size={focused ? 30: 20} color={COLORFONTS.primary}
+                 />
+            }} />
+            <Tab.Screen name="AccountStack" component={AccountStackScreen} options=
+            {{
+                headerShown:false,
+                tabBarLabel: 'Account',
+                tabBarIcon:({tintColor,focused}) => <Icon name='account-outline' size={focused ? 30: 20} color={COLORFONTS.primary}/>
+            }} />
         </Tab.Navigator>
     );
 }

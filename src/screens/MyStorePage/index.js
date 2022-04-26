@@ -88,12 +88,12 @@ useEffect(() => {
                    
           <TouchableOpacity onPress={() => navigation.navigate('SellerInventory')}>
               <View style= {styles.firstButton}>
-                <Text style={styles.buttonText}>View Current Inventory</Text>
+                <Text style={styles.buttonText}>Add Items</Text>
               </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <View style= {styles.firstButton}>
-                <Text style={styles.buttonText}>Logout</Text>
+                <Text style={styles.buttonText}>Delete or Edit Items</Text>
               </View>
           </TouchableOpacity>
         

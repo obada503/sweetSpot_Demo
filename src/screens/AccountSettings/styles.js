@@ -22,14 +22,14 @@ const styles = StyleSheet.create(
             fontFamily:'monospace',
             marginTop:10,
             marginLeft:20,
-            color:'#000000',
+            color:'#00fa9a',
           },
           title1: {
             fontSize: 20,
             fontFamily:'monospace',
             marginTop:5,
             marginLeft:20,
-            color:'#000000',
+            color:'#696969',
           },
           title2: {
             fontSize: 20,
@@ -37,6 +37,18 @@ const styles = StyleSheet.create(
             marginTop:5,
             marginLeft:20,
             color:"#00fa9a"
+          },
+          editProfileTitle:{
+            fontSize: 22,
+            fontWeight:'bold',
+            fontFamily:'monospace',
+            marginTop:5,
+            marginLeft:20,
+            color:'#00ff7f',
+            borderBottomWidth:1, 
+            borderBottomColor:'#00fa9a',
+            borderStartWidth: 5,
+            
           },
           caption: {
             fontSize: 14,
@@ -78,7 +90,8 @@ const styles = StyleSheet.create(
           container2: {
             flexDirection:'row',
             marginVertical:20,
-          }
+          },
+          
     }
 );
 

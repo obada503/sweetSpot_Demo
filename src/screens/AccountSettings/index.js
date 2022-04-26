@@ -7,6 +7,7 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Caption, TouchableRipple, Title} from 'react-native-paper'
 
+
 const AccountSettings = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
@@ -20,10 +21,10 @@ const AccountSettings = ({ navigation }) => {
                 
               {/* navigation in this block so user can edit his profile */}
               <View style={styles.userInfoSection}>
-              <TouchableOpacity onPress={() => navigation.navigate('EditAccountSettings')}>
+                <TouchableOpacity onPress={() => navigation.navigate('EditAccountSettings')}>
                 <View style={styles.row} >
-                
-                  <Text style={styles.title}>Edit Profile  </Text>
+                  <Text style={styles.editProfileTitle}> Edit  </Text>
+                  
                   <MaterialCommunityIcons.Button
                         name="account-edit"
                         size={25}
@@ -33,7 +34,8 @@ const AccountSettings = ({ navigation }) => {
                         />  
                   
                 </View>
-              </TouchableOpacity>
+                </TouchableOpacity>
+              
                   
               </View>
               {/* navigation in this block so user can edit his profile */}
