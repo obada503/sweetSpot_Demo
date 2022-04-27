@@ -66,8 +66,8 @@ const AccountSettings = ({ navigation }) => {
                       borderRightColor: '#00ffff',
                       borderRightWidth: 1
                     }]}>
-                <Title>$100</Title>
-                <Caption>Wallet</Caption>
+                <Title>5 Items</Title>
+                <Caption>Favorites</Caption>
               </View>
               <View style={styles.infoBox}>
                 <Title>5</Title>
@@ -79,12 +79,6 @@ const AccountSettings = ({ navigation }) => {
                 <View style={styles.menuItem}>
                   <Icon name="heart-outline" color="#FF6347" size={25}/>
                   <Text style={styles.menuItemText}>Your Favorites</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => {}}>
-                <View style={styles.menuItem}>
-                  <Icon name="credit-card" color="#FF6347" size={25}/>
-                  <Text style={styles.menuItemText}>Payment</Text>
                 </View>
               </TouchableOpacity>
           </View>
