@@ -83,6 +83,7 @@ const AccountSettings = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
 
+
       <View style={styles.userInfoSection}>
         <Text style={styles.title1}>{isEnabled ? "Switch as Seller" : "Switch as Buyer"}  </Text>
         <Switch
