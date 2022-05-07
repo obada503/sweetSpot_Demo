@@ -1,6 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet,Dimensions } from "react-native";
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import { COLORFONTS, SIZEFONTS } from "../../../Constants/theme";
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create(
     {
@@ -66,6 +67,21 @@ const styles = StyleSheet.create(
             fontSize: SIZEFONTS.h4,
             fontFamily:'monospace'
         },
+        buttonText2:
+        {
+            color: "#000000",
+            fontWeight: 'bold',
+            fontSize: SIZEFONTS.h4,
+            fontFamily:'monospace'
+        },
+
+        buttonText1:
+        {
+            color: COLORFONTS.white,
+            fontWeight: 'bold',
+            fontSize: SIZEFONTS.h5,
+            fontFamily:'monospace'
+        },
         add:
         { 
             backgroundColor: COLORFONTS.secondary,
@@ -98,7 +114,7 @@ const styles = StyleSheet.create(
         {
             backgroundColor: "#eeeeee",
             paddingVertical: 8,
-            paddingBottom: 85,
+            paddingBottom: 45,
             marginHorizontal: 8,
         },
         card: 
@@ -123,7 +139,41 @@ const styles = StyleSheet.create(
         {
             padding: 50
         },
-     
+        screen: {
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#fff",
+        },
+        viewWrapper: {
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.2)",
+        },
+        modalView: {
+            alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            elevation: 5,
+            transform: [{ translateX: -(width * 0.4) }, 
+                        { translateY: -90 }],
+            height: "60%",
+            width: width * 0.8,
+            backgroundColor: "#fff",
+            borderRadius: 7,
+        },
+        textInput: {
+            width: "80%",
+            borderRadius: 5,
+            paddingVertical: 8,
+            paddingHorizontal: 16,
+            borderColor: "rgba(0, 0, 0, 0.2)",
+            borderWidth: 1,
+            marginBottom: 8,
+        },
     }
 );
 
