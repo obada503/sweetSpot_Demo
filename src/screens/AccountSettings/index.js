@@ -1,101 +1,178 @@
-import { View, Text, Image, ScrollView, TextInput, TouchableOpacity } from 'react-native'
-import * as React from 'react';
+import { View, Text, Image, Switch, ScrollView, AsyncStorage, TextInput, TouchableOpacity } from 'react-native'
+import React, { useState, useEffect } from "react";
+
 import styles from './styles'
 import { COLORFONTS } from '../../../Constants/theme'
 import Register from '../Register'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Caption, TouchableRipple, Title} from 'react-native-paper'
-
+import { Caption, TouchableRipple, Title } from 'react-native-paper'
+import * as SQLite from 'expo-sqlite'
+const db = SQLite.openDatabase('db.testDb') // returns Database object
+import { useIsFocused } from "@react-navigation/native";
 
 const AccountSettings = ({ navigation }) => {
+  const [name, setName] = useState();
+  const [city, setCity] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  const isFocused = useIsFocused();
+  const [uid, setUId] = useState();
+
+  const [isEnabled, setIsEnabled] = useState(isEnabled);
+  let [flatListItems, setFlatListItems] = useState([]);
+
+  const toggleSwitch = () => {
+    setIsEnabled(previousState => !previousState);
+  }
+  let searchUser = (id) => {
+
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM user1 where id = ?',
+        [id],
+        (tx, results) => {
+          var len = results.rows.length;
+          console.log('len', len);
+          if (len > 0) {
+            setName(results.rows.item(0).name)
+            setCity(results.rows.item(0).city)
+            setPhone(results.rows.item(0).phone)
+            setEmail(results.rows.item(0).email)
+
+
+          } else {
+            alert('No user found');
+          }
+        }
+      );
+    });
+  };
+  useEffect(() => {
+    if(isFocused){ 
+
+      AsyncStorage.getItem("userId").then(asyncStorageRes => {
+        console.log(JSON.parse(asyncStorageRes))
+        setIsEnabled(JSON.parse(asyncStorageRes))
+        setUId(JSON.parse(asyncStorageRes))
+      });
+
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM favourites where uid = ?',
+        [uid],
+        (tx, results) => {
+          setFlatListItems(results.rows.length);
+        }
+      );
+    });
+  }
+
+    //when user reloads app he will get all the desserts listed
+    AsyncStorage.setItem('key', JSON.stringify(isEnabled));
+
+    // when user seacrh it will stop the state update  
+  
+
+    AsyncStorage.getItem("userId").then(asyncStorageRes => {
+      console.log("uIf", JSON.parse(asyncStorageRes))
+      searchUser(JSON.parse(asyncStorageRes));
+    });
+
+  }, [isFocused])
   return (
     <ScrollView style={styles.container}>
-            
-              <View style={styles.userInfoSection}>
-                <Image source={require('../../../assets/user.png')}
-                      style={{width:120 ,height:120, borderRadius: 100, marginTop:20}}></Image>
-                  <Text style={styles.title}> Blank Name </Text>
-                  <Text style={styles.title1}> @username </Text>
-              </View>  
-                
-              {/* navigation in this block so user can edit his profile */}
-              <View style={styles.userInfoSection}>
-                <TouchableOpacity onPress={() => navigation.navigate('EditAccountSettings')}>
-                <View style={styles.row} >
-                  <Text style={styles.editProfileTitle}> Edit  </Text>
-                  
-                  <MaterialCommunityIcons.Button
-                        name="account-edit"
-                        size={25}
-                        backgroundColor="#fffafa"
-                        color="#00fa9a"
-                        onPress={() => navigation.navigate('EditAccountSettings')}
-                        />  
-                  
-                </View>
-                </TouchableOpacity>
-              
-                  
-              </View>
-              {/* navigation in this block so user can edit his profile */}
 
-              <View style={styles.userInfoSection2}>
-                <View style={styles.row}>
-                  <Icon name="map-marker-radius" color="#00ffff" size={40}/>
-                  <Text style={styles.title2}>Dallas,TX</Text>
-                </View>
-              </View>
-                
-                <View style={styles.userInfoSection2}>
-                  <View style={styles.row}>
-                    <Icon name="phone" color="#00ffff" size={40}/>
-                    <Text style={styles.title2}>9999999999</Text>
-                  </View>
-                </View>
+      <View style={styles.userInfoSection}>
+        <Text style={styles.title1}>{isEnabled ? "Switch as Seller" : "Switch as Buyer"}  </Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
 
-                <View style={styles.userInfoSection2}>
-                  <View style={styles.row}>
-                    <Icon name="email" color="#00ffff" size={40}/>
-                    <Text style={styles.title2}>user@gmail.com</Text>
-                  </View>
-                </View>
+      </View>
 
-              <View style={styles.infoBoxWrapper}>
-                <View style={[styles.infoBox, {
-                      borderRightColor: '#00ffff',
-                      borderRightWidth: 1
-                    }]}>
-                <Title>$100</Title>
-                <Caption>Wallet</Caption>
-              </View>
-              <View style={styles.infoBox}>
-                <Title>5</Title>
-                <Caption>Orders</Caption>
-              </View>
-            </View> 
-            <View style={styles.menuWrapper}>
-              <TouchableOpacity onPress={() => {}}>
-                <View style={styles.menuItem}>
-                  <Icon name="heart-outline" color="#FF6347" size={25}/>
-                  <Text style={styles.menuItemText}>Your Favorites</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => {}}>
-                <View style={styles.menuItem}>
-                  <Icon name="credit-card" color="#FF6347" size={25}/>
-                  <Text style={styles.menuItemText}>Payment</Text>
-                </View>
-              </TouchableOpacity>
+
+
+      <View style={styles.userInfoSection}>
+        <Image source={require('../../../assets/user.png')}
+          style={{ width: 120, height: 120, borderRadius: 100, marginTop: 20 }}></Image>
+        <Text style={styles.title}> {name} </Text>
+      </View>
+
+      {/* navigation in this block so user can edit his profile */}
+      <View style={styles.userInfoSection}>
+        <TouchableOpacity onPress={() => navigation.navigate('EditAccountSettings')}>
+          <View style={styles.row} >
+            <Text style={styles.editProfileTitle}> Edit  </Text>
+
+            <MaterialCommunityIcons.Button
+              name="account-edit"
+              size={25}
+              backgroundColor="#fffafa"
+              color="#00fa9a"
+              onPress={() => navigation.navigate('EditAccountSettings')}
+            />
+
           </View>
-          
-                
+        </TouchableOpacity>
 
-              
-            
+
+      </View>
+      {/* navigation in this block so user can edit his profile */}
+
+      <View style={styles.userInfoSection2}>
+        <View style={styles.row}>
+          <Icon name="map-marker-radius" color="#00ffff" size={40} />
+          <Text style={styles.title2}>{city}</Text>
+        </View>
+      </View>
+
+      <View style={styles.userInfoSection2}>
+        <View style={styles.row}>
+          <Icon name="phone" color="#00ffff" size={40} />
+          <Text style={styles.title2}>{phone}</Text>
+        </View>
+      </View>
+
+      <View style={styles.userInfoSection2}>
+        <View style={styles.row}>
+          <Icon name="email" color="#00ffff" size={40} />
+          <Text style={styles.title2}>{email}</Text>
+        </View>
+      </View>
+
+      <View style={styles.infoBoxWrapper}>
+        <View style={[styles.infoBox, {
+          borderRightColor: '#00ffff',
+          borderRightWidth: 1
+        }]}>
+          <Title>{flatListItems}Items</Title>
+          <Caption>Favorites</Caption>
+        </View>
+        <View style={styles.infoBox}>
+          <Title>{flatListItems}</Title>
+          <Caption>Orders</Caption>
+        </View>
+      </View>
+      <View style={styles.menuWrapper}>
+        <TouchableOpacity onPress={() => { navigation.navigate("MyFavorities") }}>
+          <View style={styles.menuItem}>
+            <Icon name="heart-outline" color="#FF6347" size={25} />
+            <Text style={styles.menuItemText}>Your Favorites</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+
+
+
+
 
     </ScrollView>
-       
+
   )
 }
 

@@ -9,7 +9,7 @@ const styles = StyleSheet.create(
         },
         topContainer:
         {
-            marginTop: 200,
+            marginTop: 80,
             alignItems: 'center'
 
         },
