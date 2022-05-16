@@ -16,11 +16,11 @@ const FavoritiesList = ({ navigation }) => {
         'DELETE FROM favourites where id=?',
         [selleritems.id],
         (tx, results) => {
-          console.log('Results', results.rowsAffected);
+       //   console.log('Results', results.rowsAffected);
           if (results.rowsAffected > 0) {
             Alert.alert(
               'Success',
-              'User deleted successfully',
+              'User deleted item successfully',
               [
                 {
                   text: 'Ok',
@@ -43,11 +43,11 @@ const FavoritiesList = ({ navigation }) => {
         'DELETE FROM favourites2 where id=?',
         [selleritems.id],
         (tx, results) => {
-          console.log('Results', results.rowsAffected);
+        //  console.log('Results', results.rowsAffected);
           if (results.rowsAffected > 0) {
             Alert.alert(
               'Success',
-              'User deleted successfully',
+              'User deleted item successfully',
               [
                 {
                   text: 'Ok',
@@ -135,7 +135,7 @@ const FavoritiesList = ({ navigation }) => {
     )
   }
   function DisplaySellerItems({ item: selleritems }) {
-    console.log(selleritems.price);
+    //console.log(selleritems.price);
     return (
 
       <TouchableOpacity style={{
@@ -213,7 +213,7 @@ const FavoritiesList = ({ navigation }) => {
 
     if (isFocused) {
       AsyncStorage.getItem("userId").then(asyncStorageRes => {
-        console.log(JSON.parse(asyncStorageRes))
+      //  console.log(JSON.parse(asyncStorageRes))
         setUId(JSON.parse(asyncStorageRes))
         db.transaction((tx) => {
           tx.executeSql(
@@ -223,7 +223,7 @@ const FavoritiesList = ({ navigation }) => {
               var temp = [];
               for (let i = 0; i < results.rows.length; ++i) {
                 temp.push(results.rows.item(i));
-                console.log("temp.push", results.rows.item(i).image)
+             //   console.log("temp.push", results.rows.item(i).image)
               }
               setFlatListItems(temp);
             }
@@ -238,7 +238,7 @@ const FavoritiesList = ({ navigation }) => {
               var temp = [];
               for (let i = 0; i < results.rows.length; ++i) {
                 temp.push(results.rows.item(i));
-                console.log("temp.push", results.rows.item(i).image)
+            //    console.log("temp.push", results.rows.item(i).image)
               }
               setFlatListItems2(temp);
             }

@@ -22,13 +22,33 @@ const MyStorePage = ({ navigation }) => {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible1, setModalVisible1] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   const { width } = Dimensions.get("window");
 
-  // This is to manage TextInput State
+  let deleteUser2 = (selleritems) => {
+    setIsFetching(false);
 
-  // Create toggleModalVisibility function that will
-  // Open and close modal upon button clicks.
+    db.transaction((tx) => {
+      tx.executeSql(
+        'DELETE FROM images where image=?',
+        [selleritems.image],
+        (tx, results) => {
+          if (results.rowsAffected > 0) {
+            alert('Image Deleted');
+        //    navigation.goBack();
+          } else {
+            alert('Not Image');
+          }
+        }
+      );
+    });
+
+  };
+
+
+
   const toggleModalVisibility = () => {
     setModalVisible(!isModalVisible);
   };
@@ -44,7 +64,6 @@ const MyStorePage = ({ navigation }) => {
         [],
         (tx, results) => {
           var temp = [];
-          console.log("xxx", selleritem)
           for (let i = 0; i < results.rows.length; ++i) {
             temp.push(results.rows.item(i));
           }
@@ -122,6 +141,30 @@ const MyStorePage = ({ navigation }) => {
         <Text style={{ color: '#000000', marginHorizontal: 14, textAlign: 'center', marginVertical: 10, alignSelf: 'center' }}>$ {selleritem.price}</Text>
 
 
+        <TouchableOpacity onPress={() => {
+          deleteUser2(selleritem)
+
+        }}
+          style={{
+            backgroundColor: COLORFONTS.secondary,
+            padding: 10,
+            width: 140,
+            marginHorizontal: 10,
+            borderRadius: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginVertical: 10,
+          }}>
+          <Text style={{
+            color: COLORFONTS.white,
+            fontWeight: 'bold',
+            fontSize: 12,
+            fontFamily: 'monospace'
+          }}>Delete Items</Text>
+        </TouchableOpacity>
+
+
+
       </TouchableOpacity>
     )
   }
@@ -169,19 +212,30 @@ const MyStorePage = ({ navigation }) => {
   };
 
 
-
+  const onRefresh = () => {
+    setIsFetching(true);
+  };
+  
 
   useEffect(() => {
-    //when user reloads app he will get all the desserts listed
-    //  if (!loading) {
+    if(isFocused){ 
+
+    
+
     getImages()
-    //  }
+
+
+    AsyncStorage.getItem("isEnabled").then(asyncStorageRes => {
+      //  console.log("rt",JSON.parse(asyncStorageRes))
+      setIsEnabled(JSON.parse(asyncStorageRes))
+    });
     AsyncStorage.getItem("userId").then(asyncStorageRes => {
       searchUser(JSON.parse(asyncStorageRes));
 
     });
     setSelleritem(getSellerItems())
-  })
+  }
+}, [isFocused])
   const insertImg = (uri) => {
 
     db.transaction(tx => {
@@ -199,14 +253,14 @@ const MyStorePage = ({ navigation }) => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your photos!");
+      alert("You've refused to allow this app to access your photos!");
       return;
     }
 
     const result = await ImagePicker.launchImageLibraryAsync();
 
     // Explore the result
-    console.log(result);
+    // console.log(result);
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
       toggleModalVisibility1()
@@ -219,9 +273,6 @@ const MyStorePage = ({ navigation }) => {
 
   // This function is triggered when the "Open camera" button pressed
   const openCamera = async () => {
-
-
-
 
     // Ask the user for the permission to access the camera
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
@@ -259,13 +310,13 @@ const MyStorePage = ({ navigation }) => {
 
 
             <View style={styles.modalView}>
-            <Text style={{
-              color:'#000000',
-              fontWeight: 'bold',
-              fontSize: 20,
-              fontFamily: 'monospace',
-              marginBottom:20
-            }}>Image Description  </Text>
+              <Text style={{
+                color: '#000000',
+                fontWeight: 'bold',
+                fontSize: 20,
+                fontFamily: 'monospace',
+                marginBottom: 20
+              }}>Image Description  </Text>
 
               <TextInput placeholder="Enter Image Title"
                 value={title} style={styles.textInput}
@@ -314,13 +365,13 @@ const MyStorePage = ({ navigation }) => {
           onDismiss={toggleModalVisibility1}>
           <View style={styles.viewWrapper}>
             <View style={styles.modalView}>
-            <Text style={{
-              color:'#000000',
-              fontWeight: 'bold',
-              fontSize: 20,
-              fontFamily: 'monospace',
-              marginBottom:20
-            }}>Image Description  </Text>
+              <Text style={{
+                color: '#000000',
+                fontWeight: 'bold',
+                fontSize: 20,
+                fontFamily: 'monospace',
+                marginBottom: 20
+              }}>Image Description  </Text>
 
               <TextInput placeholder="Enter Image Title"
                 value={title} style={styles.textInput}
@@ -384,9 +435,14 @@ const MyStorePage = ({ navigation }) => {
 
           <TouchableOpacity onPress={() => navigation.navigate('SellerPage')}>
             <View style={styles.firstButton}>
-              <Text style={styles.buttonText}>All Items</Text>
+              <Text style={styles.buttonText}>Item Cart</Text>
             </View>
           </TouchableOpacity>
+
+         
+
+        
+
 
           <TouchableOpacity onPress={() => navigation.navigate('MyFavouriteList')}>
             <View style={styles.firstButton}>
@@ -394,7 +450,9 @@ const MyStorePage = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => {
+          {!isEnabled &&
+          <>
+           <TouchableOpacity onPress={() => {
             openCamera()
           }}>
             <View style={styles.firstButton}>
@@ -409,7 +467,8 @@ const MyStorePage = ({ navigation }) => {
               <Text style={styles.buttonText}>Pick Image From Gallery</Text>
             </View>
           </TouchableOpacity>
-
+          </>
+          }
 
           {/* Displaying users items horizontally , he will be able to add or remove items with expo image picker */}
           <View style={{ marginTop: 10 }}>
@@ -436,6 +495,7 @@ const MyStorePage = ({ navigation }) => {
             fontFamily: 'monospace'
           }}>My Uploaded Images</Text>
 
+
           <View style={{ marginTop: 2 }}>
 
             <FlatList
@@ -447,9 +507,11 @@ const MyStorePage = ({ navigation }) => {
               contentContainerStyle={styles.SellerInventoryContainer}
               keyExtractor={(item) => item.id.toString()}
               data={selleritem1}
-              ItemSeparatorComponent={FlatListItemSeparator}
+              onRefresh={onRefresh}
 
-              //renderDessert function declared above
+              ItemSeparatorComponent={FlatListItemSeparator}
+              refreshing={isFetching}
+                          //renderDessert function declared above
               renderItem={DisplaySellerItems1}
             />
           </View>
@@ -464,4 +526,3 @@ const MyStorePage = ({ navigation }) => {
 }
 
 export default MyStorePage
-

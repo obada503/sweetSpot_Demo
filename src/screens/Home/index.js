@@ -55,6 +55,8 @@ const DessertPage = ({ navigation, dessert }) => {
         </TouchableOpacity>
 
 
+
+        {!isEnabled &&
         <TouchableOpacity onPress={() => {
           insertImage(dessert)
 
@@ -77,7 +79,7 @@ const DessertPage = ({ navigation, dessert }) => {
           }}>Add Items</Text>
         </TouchableOpacity>
 
-
+        }
       </View>
     )
   }
@@ -96,11 +98,25 @@ const DessertPage = ({ navigation, dessert }) => {
         (txObj, error) => console.log('Error', error))
     })
   }
+
+
+  const insertImage2 = (dessert) => {
+
+
+    db.transaction(tx => {
+      tx.executeSql('INSERT INTO items2 (uid, name, price, image) values (?,?,?,?)', [userId, dessert.title, dessert.price, dessert.image],
+        (txObj, resultSet) => {
+          navigation.goBack();
+
+        },
+        (txObj, error) => console.log('Error', error))
+    })
+  }
   const [userId, setUserId] = useState();
 
   const [desserts, setDesserts] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const [isEnabled, setIsEnabled] = useState(isEnabled);
+  const [isEnabled, setIsEnabled] = useState(false);
 
   const [selleritem1, setSelleritem1] = useState([]);
 
@@ -134,10 +150,9 @@ const DessertPage = ({ navigation, dessert }) => {
 
     });
     if (isFocused) {
-      AsyncStorage.getItem("key").then(asyncStorageRes => {
-        console.log("new ", JSON.parse(asyncStorageRes))
+      AsyncStorage.getItem("isEnabled").then(asyncStorageRes => {
+        //  console.log("rt",JSON.parse(asyncStorageRes))
         setIsEnabled(JSON.parse(asyncStorageRes))
-
       });
     }
     // when user seacrh it will stop the state update  
@@ -234,24 +249,31 @@ const DessertPage = ({ navigation, dessert }) => {
         <Text style={{ color: '#000000', textAlign: 'center', marginHorizontal: 14, marginVertical: 5, alignSelf: 'center', fontWeight: 'bold' }}>{selleritem.title}</Text>
         <Text style={{ color: '#000000', textAlign: 'center', marginHorizontal: 14, marginVertical: 5, alignSelf: 'center', fontWeight: 'bold' }}>{selleritem.discription}</Text>
         <Text style={{ color: '#000000', textAlign: 'center', marginHorizontal: 14, marginVertical: 10, alignSelf: 'center' }}>$ {selleritem.price}</Text>
-        {/* <TouchableOpacity onPress={() => { }}>
-          <View style={{
+
+        {!isEnabled &&
+        <TouchableOpacity onPress={() => {
+          insertImage2(selleritem)
+
+        }}
+          style={{
             backgroundColor: COLORFONTS.secondary,
             padding: 10,
+            width: 100,
             marginHorizontal: 10,
             borderRadius: 10,
             justifyContent: 'center',
             alignItems: 'center',
             marginVertical: 10,
           }}>
-            <Text style={{
-              color: COLORFONTS.white,
-              fontFamily: 'monospace'
+          <Text style={{
+            color: COLORFONTS.white,
+            fontWeight: 'bold',
+            fontSize: 12,
+            fontFamily: 'monospace'
+          }}>Add Items</Text>
+        </TouchableOpacity>
 
-            }}>Add Favorite</Text>
-          </View>
-        </TouchableOpacity> */}
-
+        }
 
 
       </TouchableOpacity>
@@ -317,7 +339,7 @@ const DessertPage = ({ navigation, dessert }) => {
             textAlign: 'center',
             alignSelf: 'center',
             fontFamily: 'monospace'
-          }}>Defaut Images</Text>
+          }}>Default Images</Text>
 
           <FlatList
 

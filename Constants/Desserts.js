@@ -26,7 +26,7 @@ const DESSERTS = [{
 {
     id: 4,
     sellerName: "Ali Khan",
-    name: "Chocolate Fudge IceCream with Sprinkles",
+    name: "Hazelnut IceCream with Rainbow Sprinkles",
     price: 3.5,
     image: require('../assets/Desserts/Image4.png'),
     description: "Chocolate Ice cream cone with rainbow sprinkles!"
@@ -58,7 +58,7 @@ const DESSERTS = [{
 {
     id: 8,
     sellerName: "Juan Dewey",
-    name: "Chocolate Fudge IceCream with Sprinkles",
+    name: "Dark chocolate pastries ",
     price: 3.5,
     image: require('../assets/Desserts/Image8.png'),
     description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
@@ -90,123 +90,12 @@ const DESSERTS = [{
 {
     id: 12,
     sellerName: "Mariana Antal",
-    name: "Chocolate Fudge IceCream with Sprinkles",
+    name: "Chocolate Marshmellow Toast",
     price: 3.5,
     image: require('../assets/Desserts/Image12.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
+    description: "Four pieces of delicious toast "
 },
-{
-    id: 13,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image13.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 14,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image14.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 15,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image15.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 16,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image16.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 17,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image17.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 18,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image18.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 19,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image19.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 20,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image20.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 21,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image21.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 22,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image22.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 23,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image23.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 24,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image24.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 25,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image25.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-},
-{
-    id: 26,
-    sellerName: "John Adams",
-    name: "Chocolate Fudge IceCream with Sprinkles",
-    price: 3.5,
-    image: require('../assets/Desserts/Image26.png'),
-    description: "Two scoops of vanilla icecream with some chocolate fudge and rainbow sprinkes"
-}
+
    
 ]
 

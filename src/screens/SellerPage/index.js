@@ -18,11 +18,11 @@ const SellerPage = ({ navigation }) => {
         'DELETE FROM  items where id=?',
         [selleritems.id],
         (tx, results) => {
-          console.log('Results', results.rowsAffected);
+       //   console.log('Results', results.rowsAffected);
           if (results.rowsAffected > 0) {
             Alert.alert(
               'Success',
-              'User deleted successfully',
+              'User deleted item successfully',
               [
                 {
                   text: 'Ok',
@@ -39,9 +39,52 @@ const SellerPage = ({ navigation }) => {
     });
   };
 
+  let deleteUser2 = (selleritems) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'DELETE FROM  items2 where id=?',
+        [selleritems.id],
+        (tx, results) => {
+          if (results.rowsAffected > 0) {
+            Alert.alert(
+              'Success',
+              'User deleted item successfully',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => navigation.goBack(),
+                },
+              ],
+              { cancelable: false }
+            );
+          } else {
+            alert('Please insert a valid User Id');
+          }
+        }
+      );
+    });
+
+    // db.transaction((tx) => {
+    //   tx.executeSql(
+    //     'DELETE FROM images where image=?',
+    //     [selleritems.image],
+    //     (tx, results) => {
+    //       if (results.rowsAffected > 0) {
+    //         alert('Delete Image');
+    //         navigation.goBack();
+    //       } else {
+    //         alert('Not Image');
+    //       }
+    //     }
+    //   );
+    // });
+
+  };
+
+
 
   function DisplaySellerItems({ item: selleritems }) {
-    console.log(selleritems.price);
+   // console.log(selleritems.price);
     return (
 
       <TouchableOpacity style={{  
@@ -112,16 +155,91 @@ const SellerPage = ({ navigation }) => {
       </TouchableOpacity>
     )
   }
+
+  function DisplaySellerItems2({ item: selleritems }) {
+     return (
+ 
+       <TouchableOpacity style={{  
+          flex: 1,
+         backgroundColor: 'white',
+         borderRadius: 16,
+         alignItems: 'center',
+         justifyContent: 'center',
+         marginTop: '4%',
+         marginHorizontal: 2}} onPress={() => {
+         // navigation.navigate('Item', {selleritemsId: selleritems.id,},)
+       }
+       }>
+ 
+         <Image style={{
+           flex: 1,
+           aspectRatio: 1,
+           width: '40%',
+           height: '40%',
+           alignItems: 'center',
+           justifyContent: 'center',  
+           resizeMode: 'contain'
+         }} 
+         source={{ uri: JSON.parse(selleritems.image) }} />
+ 
+         <View style={styles.infoContainer}>
+         <TouchableOpacity onPress={() =>{
+           deleteUser2(selleritems)
+ 
+         }}
+           style={{
+             backgroundColor: COLORFONTS.secondary,
+             padding: 10,
+             width:150,
+             marginHorizontal: 10,
+             borderRadius: 10,
+             justifyContent: 'center',
+             alignItems: 'center',
+             marginVertical: 10,
+           }}>
+           <Text style={{
+             color: COLORFONTS.white,
+             fontWeight: 'bold',
+             fontSize: 12,
+             fontFamily: 'monospace'
+           }}>Delete Items</Text>
+         </TouchableOpacity>
+         <Text style={{
+             color: COLORFONTS.lightgrey,
+             fontWeight: 'bold',
+             fontSize: 20,
+             textAlign:'center',
+             justifyContent:'center',
+             alignSelf:'center',
+             fontFamily: 'monospace'
+           }}>{selleritems.name}</Text>
+         <Text style={{
+             color: COLORFONTS.lightgrey,
+             fontWeight: 'bold',
+             fontSize: 15,
+             justifyContent:'center',
+             alignSelf:'center',
+             fontFamily: 'monospace'
+           }}>${selleritems.price}</Text>
+ 
+ 
+         </View>
+ 
+       </TouchableOpacity>
+     )
+   }
+
   let [flatListItems, setFlatListItems] = useState([]);
+  let [flatListItems2, setFlatListItems2] = useState([]);
+
   const [uid, setUId] = useState();
 
   useEffect(() => {
     if(isFocused){ 
 
     AsyncStorage.getItem("userId").then(asyncStorageRes => {
-      console.log(JSON.parse(asyncStorageRes))
+     // console.log(JSON.parse(asyncStorageRes))
       setUId(JSON.parse(asyncStorageRes))
-      console.log("fffff+++++",JSON.parse(asyncStorageRes))
       db.transaction((tx) => {
         tx.executeSql(
           'SELECT * FROM items where uid = ?',
@@ -131,12 +249,29 @@ const SellerPage = ({ navigation }) => {
             for (let i = 0; i < results.rows.length; ++i) {
   
               temp.push(results.rows.item(i));
-              console.log("temp.push", results.rows.item(i).image)
+         //     console.log("temp.push", results.rows.item(i).image)
             }
             setFlatListItems(temp);
           }
         );
       });
+
+      db.transaction((tx) => {
+        tx.executeSql(
+          'SELECT * FROM items2 where uid = ?',
+          [JSON.parse(asyncStorageRes)],
+          (tx, results) => {
+            var temp = [];
+            for (let i = 0; i < results.rows.length; ++i) {
+  
+              temp.push(results.rows.item(i));
+         //     console.log("temp.push", results.rows.item(i).image)
+            }
+            setFlatListItems2(temp);
+          }
+        );
+      });
+
     });
 
  
@@ -147,7 +282,19 @@ const SellerPage = ({ navigation }) => {
 
 
   return (
+    <ScrollView>
     <View>
+
+
+<FlatList
+        horizontal={false}
+        style={styles.SellerInventory}
+        contentContainerStyle={styles.SellerInventoryContainer}
+        keyExtractor={(item) => item.id.toString()}
+        data={flatListItems2}
+        //renderDessert function declared above
+        renderItem={DisplaySellerItems2}
+      />
 
       <FlatList
         horizontal={false}
@@ -159,6 +306,7 @@ const SellerPage = ({ navigation }) => {
         renderItem={DisplaySellerItems}
       />
     </View>
+    </ScrollView>
   )
 }
 
@@ -171,7 +319,7 @@ const styles = StyleSheet.create({
   SellerInventoryContainer: {
     backgroundColor: "#eeeeee",
     paddingVertical: 8,
-    paddingBottom: 85,
+    paddingBottom: 15,
     marginHorizontal: 8,
   },
   imageContainer: {

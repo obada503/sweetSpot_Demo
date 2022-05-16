@@ -83,9 +83,9 @@ const LoginPage = ({ navigation }) => {
           </View>
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={() => {
-              // navigation.navigate('BottomTabs')
+            //  navigation.navigate('BottomTabs')
 
-              searchUser()
+             searchUser()
             }}>
 
               <View style={styles.firstButton}>

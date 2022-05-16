@@ -19,12 +19,9 @@ const AccountSettings = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [uid, setUId] = useState();
 
-  const [isEnabled, setIsEnabled] = useState(isEnabled);
+  const [isEnabled, setIsEnabled] = useState(false);
   let [flatListItems, setFlatListItems] = useState([]);
 
-  const toggleSwitch = () => {
-    setIsEnabled(previousState => !previousState);
-  }
   let searchUser = (id) => {
 
     db.transaction((tx) => {
@@ -33,7 +30,6 @@ const AccountSettings = ({ navigation }) => {
         [id],
         (tx, results) => {
           var len = results.rows.length;
-          console.log('len', len);
           if (len > 0) {
             setName(results.rows.item(0).name)
             setCity(results.rows.item(0).city)
@@ -50,10 +46,14 @@ const AccountSettings = ({ navigation }) => {
   };
   useEffect(() => {
     if(isFocused){ 
+    
+      AsyncStorage.getItem("isEnabled").then(asyncStorageRes => {
+      //  console.log("rt",JSON.parse(asyncStorageRes))
+        setIsEnabled(JSON.parse(asyncStorageRes))
+      });
 
       AsyncStorage.getItem("userId").then(asyncStorageRes => {
-        console.log(JSON.parse(asyncStorageRes))
-        setIsEnabled(JSON.parse(asyncStorageRes))
+        searchUser(JSON.parse(asyncStorageRes));
         setUId(JSON.parse(asyncStorageRes))
       });
 
@@ -69,26 +69,27 @@ const AccountSettings = ({ navigation }) => {
   }
 
     //when user reloads app he will get all the desserts listed
-    AsyncStorage.setItem('key', JSON.stringify(isEnabled));
 
     // when user seacrh it will stop the state update  
   
 
-    AsyncStorage.getItem("userId").then(asyncStorageRes => {
-      console.log("uIf", JSON.parse(asyncStorageRes))
-      searchUser(JSON.parse(asyncStorageRes));
-    });
+  
 
   }, [isFocused])
   return (
     <ScrollView style={styles.container}>
 
       <View style={styles.userInfoSection}>
-        <Text style={styles.title1}>{isEnabled ? "Switch as Seller" : "Switch as Buyer"}  </Text>
+        <Text style={styles.title1}>{isEnabled ? "Switched as Buyer" : "Switched as Seller"}  </Text>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-          onValueChange={toggleSwitch}
+          trackColor={{ false: "#81b0ff" , true: "#767577" }}
+          thumbColor={isEnabled ? "#f4f3f4" : "#f5dd4b"}
+          onValueChange={(value) => { 
+            setIsEnabled(value => !value);
+            AsyncStorage.setItem('isEnabled', JSON.stringify(value));
+
+        }}
+
           value={isEnabled}
         />
 
@@ -161,7 +162,7 @@ const AccountSettings = ({ navigation }) => {
         <TouchableOpacity onPress={() => { navigation.navigate("MyFavorities") }}>
           <View style={styles.menuItem}>
             <Icon name="heart-outline" color="#FF6347" size={25} />
-            <Text style={styles.menuItemText}>Your Favorites</Text>
+            <Text style={styles.menuItemText}>Add Dessert to Favorites</Text>
           </View>
         </TouchableOpacity>
       </View>

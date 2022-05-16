@@ -48,17 +48,29 @@ export default function App () {
 
     db.transaction(tx => {
       tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS items2 (id INTEGER PRIMARY KEY AUTOINCREMENT,uid INTEGER, name TEXT, price Float, image TEXT)'
+      )
+    })
+
+
+    db.transaction(tx => {
+      tx.executeSql(
         'CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT,uid INTEGER, name TEXT, price Float, image TEXT)'
       )
     })
 
     db.transaction(tx => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS images (id INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT, discription TEXT, isImage TEXT)'
+        'CREATE TABLE IF NOT EXISTS favourites2 (id INTEGER PRIMARY KEY AUTOINCREMENT,uid INTEGER, name TEXT, price Float, image TEXT)'
+      )
+    })
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS images (id INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT, discription TEXT,title TEXT,  price TEXT)'
       )
     })    
   }, []);
-
 
   
   StatusBar.setBarStyle('light-content', true)

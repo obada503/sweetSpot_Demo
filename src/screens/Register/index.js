@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground, ScrollView, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import styles from './styles'
 import { COLORFONTS } from '../../../Constants/theme'
 import LoginPage from '../Login';
@@ -26,7 +26,7 @@ const Register = ({ navigation }) => {
       db.transaction(tx => {
         tx.executeSql('INSERT INTO user1(name, sex, age, email, password,city,phone) values (?,?,?,?,?,?,?)', [Name, Sex, Age, Email, Password,City,PhoneNumber],
           (txObj, resultSet) => {
-            console.log("Insert", resultSet)
+          //  console.log("Insert", resultSet)
             navigation.navigate('Login')
 
           },
@@ -37,6 +37,7 @@ const Register = ({ navigation }) => {
   }
 
   return (
+    
     <View style={styles.container}>
       <ImageBackground
         source={require('../../../assets/pancake.jpg')}
@@ -47,6 +48,7 @@ const Register = ({ navigation }) => {
         }}
         resizeMode="cover"
       >
+        {/* <KeyboardAvoidingView style={{flex:1}} behavior='padding'> */}
         <ScrollView>
           <View style={styles.topContainer}>
             <Text style={styles.title}>Create an account</Text>
@@ -76,7 +78,7 @@ const Register = ({ navigation }) => {
               }
               placeholderTextColor={COLORFONTS.white} />
 
-<TextInput
+            <TextInput
               placeholder='City'
               style={styles.textinput}
               onChangeText={
@@ -125,8 +127,10 @@ const Register = ({ navigation }) => {
 
           </View>
         </ScrollView>
+        {/* </KeyboardAvoidingView> */}
       </ImageBackground>
-    </View>
+      </View>
+    
   )
 }
 
