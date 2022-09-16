@@ -6,7 +6,7 @@ import { COLORFONTS } from '../../../Constants/theme'
 import Register from '../Register'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Caption, Title } from 'react-native-paper'
+import { Caption, TouchableRipple, Title } from 'react-native-paper'
 import * as SQLite from 'expo-sqlite'
 const db = SQLite.openDatabase('db.testDb') // returns Database object
 import { useIsFocused } from "@react-navigation/native";

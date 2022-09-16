@@ -1,3 +1,4 @@
+import { Text} from 'react-native'
 const DESSERTS = [{
     id: 1,
     sellerName: "John Adams",
@@ -218,27 +219,27 @@ export function getDesserts(){
 export function getDessert(id){
         return DESSERTS.find((dessert) => dessert.id == id);
 }
-
-// export function getSellerDesserts(sellerName){
+//extracting the name of desserts only
+export function getDessertName(){
+    return Object.values(DESSERTS).map((x=>console.log(x.name)))
+}
     
-//         return DESSERTS.find((sellerName) => sellerName.id == id);
-    
-export function getSellerDessert(id, sellerName){
+// export function getSellerDessert(id, sellerName){
 
-    // console.log(DESSERTS.find((dessert) => (dessert.id == id && dessert.sellerName == sellerName)));
-    return DESSERTS.find((dessert) => dessert.id == id && dessert.sellerName == sellerName);
+//     // console.log(DESSERTS.find((dessert) => (dessert.id == id && dessert.sellerName == sellerName)));
+//     return DESSERTS.find((dessert) => dessert.id == id && dessert.sellerName == sellerName);
    
-}
+// }
 
 
-export function getSellerName(sellerName)
-{
+// export function getSellerName(sellerName)
+// {
      
-    DESSERTS.filter(value => value == sellerName && DESSERTS.sellerName == sellerName)
+//     DESSERTS.filter(value => value == sellerName && DESSERTS.sellerName == sellerName)
 
-    if(sellerName == DESSERTS.sellerName)
-    {
-        return DESSERTS.sellerName;
-    }
+//     if(sellerName == DESSERTS.sellerName)
+//     {
+//         return DESSERTS.sellerName;
+//     }
 
-}
+// }

@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { COLORFONTS } from './Constants/theme.js';
 import { SIZEFONTS } from './Constants/theme.js';
 import Router from './src/Router/Router.js';
 
+
+
+import * as SQLite from 'expo-sqlite'
+const db = SQLite.openDatabase('db.testDb') // returns Database object
 
 const screens = [
   {
@@ -25,6 +29,49 @@ const screens = [
 
 
 export default function App () {
+  console.disableYellowBox = true;
+
+
+  useEffect(() => {
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS user1 (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,sex TEXT ,age INT, email TEXT,password TEXT,city TEXT ,phone INT)'
+      )
+    })
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT,uid INTEGER, name TEXT, price Float, image TEXT)'
+      )
+    })
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS items2 (id INTEGER PRIMARY KEY AUTOINCREMENT,uid INTEGER, name TEXT, price Float, image TEXT)'
+      )
+    })
+
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT,uid INTEGER, name TEXT, price Float, image TEXT)'
+      )
+    })
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS favourites2 (id INTEGER PRIMARY KEY AUTOINCREMENT,uid INTEGER, name TEXT, price Float, image TEXT)'
+      )
+    })
+
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS images (id INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT, discription TEXT,title TEXT,  price TEXT)'
+      )
+    })    
+  }, []);
+
   
   StatusBar.setBarStyle('light-content', true)
   const [showAuthenticationPage, setAuthenticationPage] = useState(false);

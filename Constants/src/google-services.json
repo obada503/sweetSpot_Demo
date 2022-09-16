@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "540596262523",
+    "project_id": "sweetspotdemo",
+    "storage_bucket": "sweetspotdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540596262523:android:84cf1369ed6b27eb8eb4de",
+        "android_client_info": {
+          "package_name": "com.uta.sweetSpot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540596262523-933m35gbnnckruqaj10u978q7gea28to.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA30g46Peh4xB9y1E73RkHG2k99r_GSSEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540596262523-933m35gbnnckruqaj10u978q7gea28to.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "540596262523-1hlrbngc8ir9npld870g6g0v9lbs855v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.uta.SweetSpot"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
